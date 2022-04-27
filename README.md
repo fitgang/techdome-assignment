@@ -1,1 +1,0 @@
-# techdome-assignment

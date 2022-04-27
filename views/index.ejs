@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/style.min.css">
+  <link rel="stylesheet preconnect" href="/css/style.min.css">
   <title>Document</title>
 </head>
 
@@ -52,17 +52,17 @@
           </h3>
           <div>
             <div class="bold">Mission Ids:</div>
-            <ul>
-              <% if (data.mission_id.length !=0) { %>
+            <% if (data.mission_id.length !=0) { %>
+              <ul>
                 <% data.mission_id.forEach(id=> { %>
                   <li>
                     <%= id %>
                   </li>
                   <% }) %>
-                    <% } else { %>
-                      <li>not provided</li>
-                      <% } %>
-            </ul>
+              </ul>
+              <% } else { %>
+                not provided
+                <% } %>
           </div>
           <div>
             <span class="bold">Launch Year:</span>
@@ -89,7 +89,15 @@
   <footer>
     <span class="bold">Developed by:</span> Ayush Gupta
   </footer>
-  <script src="/js/script.min.js"></script>
+  <script>
+    document.addEventListener("readystatechange", (e) => {
+      if (e.target.readyState == "complete") {
+        const script = document.createElement("script");
+        script.src = "/js/script.min.js";
+        document.body.append(script);
+      }
+    })
+  </script>
 </body>
 
 </html>

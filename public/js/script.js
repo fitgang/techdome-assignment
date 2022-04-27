@@ -128,9 +128,9 @@ function createPropertyComponent(property, value) {
     childElem.className = "bold";
     parentElem.append(childElem);
 
-    childElem = document.createElement("ul");
 
     if (value.length != 0) {
+      childElem = document.createElement("ul");
 
       value.forEach(id => {
         const li = document.createElement("li");
@@ -138,14 +138,12 @@ function createPropertyComponent(property, value) {
         childElem.append(li);
       })
 
-    } else {
+      parentElem.append(childElem);
 
-      const li = document.createElement("li");
-      li.innerText = "not provided";
-      childElem.append(li);
+    } else {
+      parentElem.innerHTML += "not provided"
     }
 
-    parentElem.append(childElem);
 
   } else {
 

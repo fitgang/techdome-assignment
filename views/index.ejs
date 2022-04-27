@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.min.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>SpaceX Launch Programs</h1>
+  <section id="filters">
+    <h2>Filters</h2>
+
+    <section class="filter">
+      <h3>Launch Year</h3>
+      <div>
+        <% for(let i=2006; i <=2020; i++) { %>
+          <button type="button" data-filter="launch_year">
+            <%= i %>
+          </button>
+          <% } %>
+      </div>
+    </section>
+
+    <section class="filter">
+      <h3>Successful Launch</h3>
+      <div>
+        <button type="button" data-filter="launch_success">true</button>
+        <button type="button" data-filter="launch_success">false</button>
+      </div>
+    </section>
+
+    <section class="filter">
+      <h3>Successful Landing</h3>
+      <div>
+        <button type="button" data-filter="land_success">true</button>
+        <button type="button" data-filter="land_success">false</button>
+      </div>
+    </section>
+
+  </section>
+  <main id="programs">
+    <% dataset.forEach(data=> { %>
+      <section class="program">
+        <img src="<%= data.links.mission_patch_small %>" alt="<%= data.mission_name + ' #' + data.flight_number %>">
+        <div class="content">
+          <h3>
+            <%= data.mission_name + " #" + data.flight_number %>
+          </h3>
+          <div>
+            <div class="bold">Mission Ids:</div>
+            <ul>
+              <% if (data.mission_id.length !=0) { %>
+                <% data.mission_id.forEach(id=> { %>
+                  <li>
+                    <%= id %>
+                  </li>
+                  <% }) %>
+                    <% } else { %>
+                      <li>not provided</li>
+                      <% } %>
+            </ul>
+          </div>
+          <div>
+            <span class="bold">Launch Year:</span>
+            <span>
+              <%= data.launch_year==null ? "not provided" : data.launch_year %>
+            </span>
+          </div>
+          <div>
+            <span class="bold">Successful Launch:</span>
+            <span>
+              <%= data.launch_success==null ? "not provided" : data.launch_success %>
+            </span>
+          </div>
+          <div>
+            <span class="bold">Successful Landing:</span>
+            <span>
+              <%= data.launch_landing==null ? "not provided" : data.launch_landing %>
+            </span>
+          </div>
+        </div>
+      </section>
+      <% }) %>
+  </main>
+  <footer>
+    <span class="bold">Developed by:</span> Ayush Gupta
+  </footer>
+  <script src="/js/script.min.js"></script>
+</body>
+
+</html>
